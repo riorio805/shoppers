@@ -1,10 +1,10 @@
-import datetime
+import datetime,json
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound, JsonResponse
 from django.core import serializers
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
@@ -143,7 +143,7 @@ def add_product_ajax(request):
 def create_product_flutter(request):
     if request.method == 'POST':
         data = json.loads(request.body)
-        
+
         new_product = Product.objects.create(
             user = request.user,
             name = data["name"],
