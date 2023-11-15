@@ -45,7 +45,7 @@
                                 Hello user, please log in.
                             {% endif%}
                         </span>
-                        {% if request.user %}
+                        {% if not request.user.is_anonymous %}
                         <a href="{% url 'main:logout' %}">
                             <button class="login-button">
                                 Logout
